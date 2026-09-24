@@ -33,7 +33,9 @@ Sistem *event-driven* menggunakan n8n yang mendengarkan *payload* pendaftaran vi
 1.  **Webhook Trigger:** Menangkap *HTTP POST request* secara *real-time*.
 2.  **IF:** Mengevaluasi kondisi parameter bertipe *Number*.
 3.  **Telegram Action:** Mendistribusikan data *True* dengan *template* pesan dinamis.
-4.  **Google Sheets:** Menjalankan operasi `Append Row` untuk menyimpan data *False*.
+   <img width="345" height="401" alt="730c2d93-39b0-43c2-9bea-f20085938ae1" src="https://github.com/user-attachments/assets/3c79f09f-9422-4850-a6b9-e754a6658b3c" />
+
+5.  **Google Sheets:** Menjalankan operasi `Append Row` untuk menyimpan data *False*.
    <img width="687" height="276" alt="image" src="https://github.com/user-attachments/assets/0d2baf58-aa28-4311-bbc7-ac7902c715cf" />
 
 
