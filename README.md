@@ -19,6 +19,8 @@ Sistem *event-driven* menggunakan n8n yang mendengarkan *payload* pendaftaran vi
 `Webhook Trigger (POST)` ➡️ `IF Node (Logic Branching)` 
   ┣━ `True (Budget > 10M)` ➡️ `Telegram Action (Alert)`
   ┗━ `False (Budget <= 10M)` ➡️ `Google Sheets Action (Append Row)`
+  <img width="1903" height="802" alt="image" src="https://github.com/user-attachments/assets/4dc99630-1a47-4229-ab07-c505ea5de271" />
+
 
 ## 5. Tools & Technologies
 *   **n8n:** Workflow Automation Platform
@@ -32,6 +34,8 @@ Sistem *event-driven* menggunakan n8n yang mendengarkan *payload* pendaftaran vi
 2.  **IF:** Mengevaluasi kondisi parameter bertipe *Number*.
 3.  **Telegram Action:** Mendistribusikan data *True* dengan *template* pesan dinamis.
 4.  **Google Sheets:** Menjalankan operasi `Append Row` untuk menyimpan data *False*.
+   <img width="687" height="276" alt="image" src="https://github.com/user-attachments/assets/0d2baf58-aa28-4311-bbc7-ac7902c715cf" />
+
 
 ## 7. Workflow Explanation
 *   **Input:** Data *lead* (Nama, Perusahaan, Email, Budget) dikirimkan dalam format JSON ke URL *Webhook endpoint*.
