@@ -1,0 +1,220 @@
+{
+  "name": "Project 2 - n8n-lead-routing-system",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "59db2d3b-ad8b-41a0-8f38-7f34b1c0d428",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6a4ed21d-07b6-4b98-8238-8212860880ff",
+      "name": "Webhook",
+      "webhookId": "59db2d3b-ad8b-41a0-8f38-7f34b1c0d428"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ee12b48d-9cab-4050-8119-c61928787dde",
+              "leftValue": "={{ $json.body.budget }}",
+              "rightValue": 10000000,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        224,
+        0
+      ],
+      "id": "4e8f2316-b0b6-49b8-8a91-511d7bb191d4",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "5160693473",
+        "text": "=🚨 URGENT: HIGH-VALUE LEAD MASUK! 🚨  \nNama:{{ $json.body.nama }} \nPerusahaan:{{ $json.body.perusahaan }}  \nEmail: {{ $json.body.email }}\nBudget: Rp {{ $json.body.budget }} \nHarap segera Follow-Up!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        -96
+      ],
+      "id": "1304702c-14d2-4079-913d-6be10764a40f",
+      "name": "Send a text message",
+      "webhookId": "e9f74985-d294-4f2a-a419-e36277675dbb",
+      "credentials": {
+        "telegramApi": {
+          "id": "U2gPXQLc1VrDFugj",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1zi1v0GjzppeN77YWQ3yMSTeaIG_bKcJlKMvHoz30v7E",
+          "mode": "list",
+          "cachedResultName": "CRM - Leads Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zi1v0GjzppeN77YWQ3yMSTeaIG_bKcJlKMvHoz30v7E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zi1v0GjzppeN77YWQ3yMSTeaIG_bKcJlKMvHoz30v7E/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nama": "={{ $json.body.nama }}",
+            "Perusahaan": "={{ $json.body.perusahaan }}",
+            "Email": "={{ $json.body.email }}",
+            "Budget ": "={{ $json.body.budget }}",
+            "Kategori ": "Low Budget Lead"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nama",
+              "displayName": "Nama",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Perusahaan",
+              "displayName": "Perusahaan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Budget ",
+              "displayName": "Budget ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Kategori ",
+              "displayName": "Kategori ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        96
+      ],
+      "id": "cd79c13e-22fe-4254-abf4-25a1693b0d89",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JG4t90sgcXv9v3fP",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "857d2a9c-1fb5-4605-8e78-43df84215a1e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "78020135ce1e18d23f1d2826518029bcddfec44dbf18b7fe235e495f881aa588"
+  },
+  "nodeGroups": [],
+  "id": "ayShniVMPbX2VXGz",
+  "tags": []
+}
